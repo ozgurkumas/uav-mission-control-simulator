@@ -57,6 +57,23 @@ public final class InMemoryVehicleRepository
     }
 
     @Override
+    public boolean existsByNameIgnoreCase(String name) {
+        Objects.requireNonNull(
+                name,
+                "Vehicle name cannot be null."
+        );
+
+        String normalizedName = name.trim();
+
+        return vehicles.values()
+                .stream()
+                .anyMatch(vehicle ->
+                        vehicle.getName()
+                                .equalsIgnoreCase(normalizedName)
+                );
+    }
+
+    @Override
     public boolean deleteById(UUID id) {
         Objects.requireNonNull(
                 id,
