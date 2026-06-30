@@ -19,5 +19,7 @@ public interface VehicleRepository {
 
     boolean existsById(UUID id);
 
+    boolean existsByNameIgnoreCase(String name);
+
     boolean deleteById(UUID id);
 }
